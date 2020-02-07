@@ -1,6 +1,8 @@
+const path = require('path');
 const express = require('express');
 // The variable app allows you to use various methods stored on express
 const app = express();
+const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.get('', (req, res)=>{
     res.send('<h1>Weather<h1/>')
