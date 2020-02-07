@@ -1,5 +1,5 @@
 const express = require('express');
-// the variable app allows you to use various methods stored on express
+// The variable app allows you to use various methods stored on express
 const app = express();
 
 app.get('', (req, res)=>{
