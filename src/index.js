@@ -1,9 +1,9 @@
 const express = require('express');
-// Allows you to use various methods stored on express
+// the variable app allows you to use various methods stored on express
 const app = express();
 
 app.get('', (req, res)=>{
-    res.send('Hello Express')
+    res.send('<h1>Weather<h1/>')
 })
 
 app.get('/help', (req, res)=>{
@@ -11,11 +11,14 @@ app.get('/help', (req, res)=>{
 })
 
 app.get('/about', (req, res) => {
-    res.send('About page')
+    res.send('<h1>About<h1/>')
 })
 //Weather route
 app.get('/weather', (req, res) => {
-    res.send('Show weather')
+    res.send({
+        forecast: 'Pretty good and sunny',
+        location: 'Miami, FL'
+    })
 })
 
 app.listen(3000, ()=>{
