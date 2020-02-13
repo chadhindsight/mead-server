@@ -2,14 +2,16 @@ const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 
-// The variable app allows you to use various methods stored on express
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
+
 const app = express();
 // Define paths for express config
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-// Setup handlebars engine and views location
+// Setup the handlebars engine and views location
 app.set('views', viewsPath);
 app.set('view engine', 'hbs');
 hbs.registerPartials(partialsPath);
@@ -34,14 +36,48 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
+        name: 'Andrew Mead',
         msg: 'Have a query or need help with something? You are in the right place!'
+
     })
 })
 //Weather route
 app.get('/weather', (req, res) => {
-    res.send({
-        forecast: 'Pretty good and sunny',
-        location: 'Miami, FL'
+    if(!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        })
+
+    }
+    
+    geocode(req.query.address, (error, {lat, long, location})=>{
+        if(error){
+            return res.send({error})
+        }
+        forecast(lat, long, (error, forecastData)=>{
+            if(error) {
+                return res.send({error})
+            }
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
+            })
+        })
+        
+    })
+})
+
+// Error Routes
+app.get('/help/*', (req, res) => {
+    res.render('404',{
+        errorMsg: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404',{
+        errorMsg: 'Page not found!'
     })
 })
 
