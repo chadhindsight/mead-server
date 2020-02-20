@@ -4,12 +4,15 @@
   "description": "basic server practice",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "jshint": "^2.11.0"
+    "hbs": "^4.1.0",
+    "jshint": "^2.11.0",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.0"
   }
 }
