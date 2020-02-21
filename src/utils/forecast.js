@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-
 const request = require('request');
 
 const forecast = (lat, long, callback)=>{
