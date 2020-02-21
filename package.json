@@ -4,7 +4,8 @@
   "description": "basic server practice",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js -e js,hbs"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "jshint": "^2.11.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.2.0"
   }
 }
