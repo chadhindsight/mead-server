@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-// request modeule allows you to make requests 
+// request modeule allows you to make requests!
 const request = require('request');
 
 const geocode = (address, callback) => {
